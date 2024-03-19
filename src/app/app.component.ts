@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+//if standalone
+//import { SidebarComponent } from './sidebar/sidebar.component'; 
 
 @Component({
   selector: 'app-root',
