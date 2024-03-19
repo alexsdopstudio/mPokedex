@@ -1,5 +1,4 @@
 <div class="flex" [ngClass]="{ 'w-10': !isOpen }">
-
   <header
     [ngClass]="isOpen ? 'basis-90' : 'basis-0'"
     class="flex shrink-0 transition-all h-screen overflow-x-hidden no-scrollbar bg-gray-100"
@@ -51,19 +50,9 @@
       >
         <h6 class="font-bold mb-1">📚 types</h6>
         <div class="flex flex-wrap gap-2">
-          <button class="rounded-lg px-2 text-white bg-gray-600">
-            fire:on
+          <button *ngFor="let type of types" class="rounded-md py-1 px-2 border">
+            {{type.name}}
           </button>
-          <button class="rounded-md py-1 px-2 border">grass</button>
-          <button class="rounded-md py-1 px-2 border">water</button>
-          <button class="rounded-md py-1 px-2 text-white bg-gray-600">
-            wind:on
-          </button>
-          <button class="rounded-md py-1 px-2 border">bug</button>
-          <button class="rounded-md py-1 px-2 text-white bg-gray-600">
-            green:on
-          </button>
-          <button class="rounded-md py-1 px-2 border">medical</button>
           <button class="rounded-md py-1 px-2 text-white bg-gray-600">
             psyco:on
           </button>
@@ -76,21 +65,11 @@
       >
         <h6 class="font-bold mb-1">🌋 habitats</h6>
         <div class="flex flex-wrap gap-2">
-          <button class="rounded-lg px-2 text-white bg-gray-600">
-            cave:on
+          <button *ngFor="let habitat of habitats" class="rounded-md py-1 px-2 border">
+            {{habitat.name}}
           </button>
-          <button class="rounded-md py-1 px-2 border">forest</button>
-          <button class="rounded-md py-1 px-2 border">grassland</button>
           <button class="rounded-md py-1 px-2 text-white bg-gray-600">
             mountain:on
-          </button>
-          <button class="rounded-md py-1 px-2 border">rare</button>
-          <button class="rounded-md py-1 px-2 text-white bg-gray-600">
-            sea:on
-          </button>
-          <button class="rounded-md py-1 px-2 border">urban</button>
-          <button class="rounded-md py-1 px-2 text-white bg-gray-600">
-            waters-edge:on
           </button>
         </div>
       </div>
@@ -251,5 +230,4 @@
       </span>
     </div>
   </div>
-  
 </div>

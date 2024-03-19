@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Habitat } from '../types/habitats';
+import { Type } from '../types/types';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
+  @Input() types!: Type[];
+  @Input() habitats!: Habitat[];
+
   isOpen = true;
 
   toggleSidebar() {
