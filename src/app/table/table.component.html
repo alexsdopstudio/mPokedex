@@ -9,26 +9,32 @@
       </tr>
     </thead>
     <tbody class="font-light">
-      <tr app-table-row *ngFor="let pokemon of (paginated$ |async)?.results" [pokemon] = "pokemon">
-      </tr>
+      <ng-container *ngIf="paginated$ | async as paginated">
+        <tr
+          app-table-row
+          *ngFor="let pokemon of paginated.results"
+          [pokemon]="pokemon"
+        ></tr>
+      </ng-container>
     </tbody>
   </table>
 </div>
 
 <div id="pagination" class="flex justify-center px-4 py-2 border rounded-lg">
   <ul class="flex flex-row gap-1">
+    <ng-container *ngIf="paginated$ | async as paginated">
+      <select (change)="onPageChange($event)">
+        <option
+          *ngFor="let page of totalPages(paginated)"
+          [value]="page"
+          (click)="getPaginated(page)"
+        >
+          {{ page }}
+        </option>
+      </select>
+    </ng-container>
     <li>
-      <button >prev</button>
-    </li>
-    <li>
-      <button >next</button>
-    </li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>
-      <button (click)="getPaginated()">load</button>
+      <button (click)="getPaginated(2)">load</button>
     </li>
   </ul>
 </div>

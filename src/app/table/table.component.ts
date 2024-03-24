@@ -18,14 +18,27 @@ export class TableComponent implements OnInit {
   pokemons: Detailed[] = [];
   paginated$: Observable<Paginated> | undefined;
 
-  getPaginated() {
-    this.paginated$ = this.data.getData('pokemon?offset=0&limit=20');
+  private readonly pokemonsPerPage = 20;
+
+  getPaginated(page: number) {
+    const offset = (page - 1) * this.pokemonsPerPage;
+    const limit = this.pokemonsPerPage;
+    this.paginated$ = this.data.getData(`pokemon?offset=${offset}&limit=${limit}`);
+  }
+
+  onPageChange(e: Event) {
+    const target = e.target as HTMLSelectElement;
+    this.getPaginated(parseInt(target.value))
+  }
+
+  totalPages(paginated: Paginated): number[]{
+    const pagesNumber = Math.ceil((paginated.count / this.pokemonsPerPage));
+    return Array.from({length: pagesNumber}, (e,i)=> i+1)
   }
 
   constructor(private data: DataService) {}
 
   ngOnInit(): void {
-    this.getPaginated();
-    
+    this.getPaginated(1);
   }
 }

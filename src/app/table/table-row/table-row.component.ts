@@ -12,11 +12,10 @@ import { Observable } from 'rxjs';
 export class TableRowComponent implements OnInit {
   @Input() pokemon!: Results;
   pokemonDetail$: Observable<Detailed> | undefined;
-
-
+  
   constructor(private http: DataService) {}
 
   ngOnInit(): void {
-    this.pokemonDetail$ = this.http.getPokemonDetails(`pokemon/${this.pokemon.name}`);
+    this.pokemonDetail$ = this.http.getPokemonDetails(this.pokemon.name);
   }
 }

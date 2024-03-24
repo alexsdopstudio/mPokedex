@@ -8,27 +8,16 @@ import { Detailed } from './types/detailedResponse';
 })
 export class DataService {
   constructor(private http: HttpClient) {}
-
-  private api = 'https://pokeapi.co/api/v2/';
+  private readonly api = 'https://pokeapi.co/api/v2/';
 
   getData(ep: string): Observable<Paginated> {
-    return this.http.get<Paginated>(`${this.api}${ep}`);
+    return this.http.get<Paginated>(
+      `${this.api}${ep}`
+    );
   }
+
 
   getPokemonDetails(name: string): Observable<Detailed> {
-    return this.http.get<Detailed>(`${this.api}${name}`);
-  }
-
-  getDetailedResults(): Observable<Detailed[]> {
-    return this.http.get<Paginated>(`${this.api}pokemon?offset=0&limit=20`)
-    .pipe(
-      switchMap((response: Paginated) => {
-        return forkJoin(
-          response.results.map((obj: Results) => 
-            this.http.get<Detailed>(obj.url)
-          )
-        )
-      })
-    );
+    return this.http.get<Detailed>(`${this.api}pokemon/${name}`);
   }
 }
