@@ -18,21 +18,21 @@ export class SidebarComponent {
   }
 
   getTypes(): void {
-    this.data.getData('type').subscribe((data: Paginated) => {
-      this.types = data.results;
-      console.log(this.types);
+    this.data.getData('type').subscribe((response: Paginated) => {
+      this.types = response.results;
+      //console.log(this.types);
     });
   }
 
   getHabitats(): void {
-    this.data.getData('pokemon-habitat').subscribe((data: Paginated) => {
-      this.habitats = data.results;
-      console.log(this.habitats);
+    this.data.getData('pokemon-habitat').subscribe((response: Paginated) => {
+      this.habitats = response.results;
+      //console.log(this.habitats);
     });
   }
 
   ngOnInit(): void {
-    console.log('oninit');
+    //console.log('oninit');
     this.getTypes();
     this.getHabitats();
   }

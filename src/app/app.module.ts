@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TableComponent } from './table/table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TableRowComponent } from './table/table-row/table-row.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    TableComponent
+    TableComponent,
+    TableRowComponent
   ],
   imports: [
     BrowserModule,

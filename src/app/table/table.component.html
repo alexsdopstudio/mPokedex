@@ -2,90 +2,14 @@
   <table class="text-left w-full">
     <thead>
       <tr>
-        <th class="border-e-2">#id</th>
         <th>#id</th>
-        <th>#id</th>
-        <th>#id</th>
-        <th>#id</th>
+        <th>name</th>
+        <th>height</th>
+        <th>weight</th>
       </tr>
     </thead>
     <tbody class="font-light">
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaaaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
-      </tr>
-      <tr>
-        <td>aaaa</td>
-        <td>aaaa</td>
-        <td>aaaaaaa</td>
-        <td>aaaa</td>
-        <td>aaaa</td>
+      <tr app-table-row *ngFor="let pokemon of (paginated$ |async)?.results" [pokemon] = "pokemon">
       </tr>
     </tbody>
   </table>
@@ -93,12 +17,18 @@
 
 <div id="pagination" class="flex justify-center px-4 py-2 border rounded-lg">
   <ul class="flex flex-row gap-1">
+    <li>
+      <button >prev</button>
+    </li>
+    <li>
+      <button >next</button>
+    </li>
     <li>1</li>
     <li>1</li>
     <li>1</li>
     <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
+    <li>
+      <button (click)="getPaginated()">load</button>
+    </li>
   </ul>
 </div>
