@@ -15,18 +15,18 @@ import { Observable } from 'rxjs';
   styleUrl: './table.component.css',
 })
 export class TableComponent implements OnInit {
-  pokemons: Detailed[] = [];
+  //pokemons: Detailed[] = [];
   paginated$: Observable<Paginated> | undefined;
 
   private readonly pokemonsPerPage = 20;
 
-  getPaginated(page: number) {
+  getPaginated(page: number): void {
     const offset = (page - 1) * this.pokemonsPerPage;
     const limit = this.pokemonsPerPage;
     this.paginated$ = this.data.getData(`pokemon?offset=${offset}&limit=${limit}`);
   }
 
-  onPageChange(e: Event) {
+  onPageChange(e: Event): void {
     const target = e.target as HTMLSelectElement;
     this.getPaginated(parseInt(target.value))
   }

@@ -15,8 +15,6 @@ export class DataService {
       `${this.api}${ep}`
     );
   }
-
-
   getPokemonDetails(name: string): Observable<Detailed> {
     return this.http.get<Detailed>(`${this.api}pokemon/${name}`);
   }

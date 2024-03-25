@@ -10,7 +10,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TableComponent } from './table/table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableRowComponent } from './table/table-row/table-row.component';
-import { NgModel } from '@angular/forms';
+import { CardComponent } from './card/card.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,8 @@ import { NgModel } from '@angular/forms';
     SidebarComponent,
     TableComponent,
     TableRowComponent,
+    CardComponent,
+    HomeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [provideClientHydration()],

@@ -3,6 +3,7 @@ import { DataService } from '../../data.service';
 import { Paginated, Results } from '../../types/paginatedResponse';
 import { Detailed } from '../../types/detailedResponse';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: '[app-table-row]',
@@ -12,10 +13,13 @@ import { Observable } from 'rxjs';
 export class TableRowComponent implements OnInit {
   @Input() pokemon!: Results;
   pokemonDetail$: Observable<Detailed> | undefined;
-  
-  constructor(private http: DataService) {}
+  page: string | undefined; 
+
+  constructor(private http: DataService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.pokemonDetail$ = this.http.getPokemonDetails(this.pokemon.name);
+    this.page = `card/${this.pokemon.name}`;
+    console.log(this.route.snapshot.paramMap.get('name'));
   }
 }
