@@ -12,7 +12,7 @@ import { Detailed } from '../types/detailedResponse';
 // ??? extends TableRowComponent: now it makes sense, but later?
 export class CardComponent {
   pokemonDetail$: Observable<Detailed> | undefined;
-  // TODO: code species interface and show data on template
+  // TODO1: code species interface and show data on template
   pokemonSpecies$: Observable<Detailed> | undefined;
   name = this.route.snapshot.paramMap.get('name');
 
@@ -21,6 +21,7 @@ export class CardComponent {
   ngOnInit(): void {
     if (this.name) {
       this.pokemonDetail$ = this.http.getData<Detailed>('pokemon', this.name);
+      // TODO2: use interface to type returned data
       this.pokemonSpecies$ = this.http.getData('pokemon-species', this.name);
       console.log(this.pokemonDetail$);
       console.log(this.pokemonSpecies$);
