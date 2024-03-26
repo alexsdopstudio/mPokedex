@@ -15,15 +15,17 @@ export class TableRowComponent implements OnInit {
   pokemonDetail$: Observable<Detailed> | undefined;
   page: string | undefined;
 
-  getTypeNames(types: any[]): string {
+  constructor(public http: DataService, public route: ActivatedRoute) {}
+  
+  ngOnInit(): void {
+    this.pokemonDetail$ = this.http.getData('pokemon', this.pokemon.name);
+    this.page = `card/${this.pokemon.name}`;
+    //console.log(this.route.snapshot.paramMap.get('name'));
+  }
+
+  extractTypeNames(types: any[]): string {
     return types.map(obj => obj.type.name).join(', ');
   }
 
-  constructor(private http: DataService, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.pokemonDetail$ = this.http.getPokemonDetails(this.pokemon.name);
-    this.page = `card/${this.pokemon.name}`;
-    console.log(this.route.snapshot.paramMap.get('name'));
-  }
 }

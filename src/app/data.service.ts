@@ -10,12 +10,11 @@ export class DataService {
   constructor(private http: HttpClient) {}
   private readonly api = 'https://pokeapi.co/api/v2/';
 
-  getData(ep: string): Observable<Paginated> {
-    return this.http.get<Paginated>(
-      `${this.api}${ep}`
-    );
-  }
-  getPokemonDetails(name: string): Observable<Detailed> {
-    return this.http.get<Detailed>(`${this.api}pokemon/${name}`);
+/*   getDatabyUrl<T>(url: string): Observable<T> {
+    return this.http.get<T>(url);
+  } */
+
+  getData<T>(ep: string, key = ''): Observable<T> {
+    return this.http.get<T>(`${this.api}${ep}/${key}`);
   }
 }

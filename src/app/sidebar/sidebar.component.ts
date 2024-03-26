@@ -18,14 +18,14 @@ export class SidebarComponent {
   }
 
   getTypes(): void {
-    this.data.getData('type').subscribe((response: Paginated) => {
+    this.data.getData<Paginated>('type').subscribe((response) => {
       this.types = response.results;
       //console.log(this.types);
     });
   }
 
   getHabitats(): void {
-    this.data.getData('pokemon-habitat').subscribe((response: Paginated) => {
+    this.data.getData<Paginated>('pokemon-habitat').subscribe((response) => {
       this.habitats = response.results;
       //console.log(this.habitats);
     });
