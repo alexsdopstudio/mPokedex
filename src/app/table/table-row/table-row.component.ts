@@ -13,7 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 export class TableRowComponent implements OnInit {
   @Input() pokemon!: Results;
   pokemonDetail$: Observable<Detailed> | undefined;
-  page: string | undefined; 
+  page: string | undefined;
+
+  getTypeNames(types: any[]): string {
+    return types.map(obj => obj.type.name).join(', ');
+  }
 
   constructor(private http: DataService, private route: ActivatedRoute) {}
 
