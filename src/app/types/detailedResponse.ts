@@ -10,17 +10,21 @@ export interface Detailed {
     back_default: string | null;
     other: {
       dream_world: {
-        front_default: string
-      }
-    }
+        front_default: string;
+      };
+    };
   };
-  stats: {
-    base_stat: number;
-    effort: number;
-    stat: Results;
-  }[];
+
+  stats: Stat[];
+
   types: {
     slot: number;
     type: Results;
   }[];
+}
+
+export interface Stat {
+  base_stat: number;
+  effort: number;
+  stat: Results;
 }

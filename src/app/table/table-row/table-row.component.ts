@@ -25,4 +25,6 @@ export class TableRowComponent implements OnInit {
   extractTypeNames(types: any[]): string {
     return types.map((obj) => obj.type.name).join(', ');
   }
+
+  
 }

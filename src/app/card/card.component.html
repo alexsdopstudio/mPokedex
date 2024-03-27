@@ -2,28 +2,57 @@
   id="cardContainer"
   class="flex items-center justify-center w-screen h-screen"
 >
-  <div id="card" class=" bg-slate-200">
+  <div id="card" class="bg-slate-200 rounded-lg">
     <ng-container *ngIf="pokemonDetail$ | async as pokemonDetail">
       <ng-container *ngIf="pokemonSpecies$ | async as pokemonSpecies">
         <div class="p-4 flex flex-col">
-          <h1 class="font-semibold text-4xl">{{ pokemonDetail.name }} </h1>
-          <p>{{extractJapaneseName(pokemonSpecies.names)}}</p>
-          <p>evolves from: {{ pokemonSpecies.evolves_from_species?.name }}</p>
-          <div class="border bg-white rounded-md p-4">
-        <img
-          [src]="pokemonDetail.sprites.other.dream_world.front_default"
-          [alt]="pokemonDetail.name"
-          class="h-80"
-        />
-      </div>
-        <p>height: {{ pokemonDetail.height }}</p>
-        <p>weight: {{ pokemonDetail.weight }}</p>
-        <p>color: {{ pokemonSpecies.color.name }}</p>
-        <p>shape: {{ pokemonSpecies.shape.name }}</p>
-        <p>{{ extractTypeNames(pokemonDetail.types) }}</p>
-      </div>
+          <h1 id="italianName" class="font-semibold text-4xl">
+            {{ pokemonDetail.name | titlecase }}
+          </h1>
+
+          <div class="flex justify-between pb-1">
+            <p id="japaneseName" class="flex items-center">
+              <span class="text-xs">🔴</span>
+              {{ extractJapaneseName(pokemonSpecies.names) }}
+            </p>
+
+            <p id="prevStage">
+              {{
+                pokemonSpecies.evolves_from_species?.name
+                  ? "evolves from " + pokemonSpecies.evolves_from_species?.name
+                  : "1st stage"
+              }}
+            </p>
+          </div>
+
+          <div id="sprite" class="border bg-white rounded-lg p-4">
+            <img
+              [src]="
+                pokemonDetail.sprites.other.dream_world.front_default
+                  ? pokemonDetail.sprites.other.dream_world.front_default
+                  : pokemonDetail.sprites.front_default
+              "
+              [alt]="pokemonDetail.name"
+              class="h-80 w-80"
+            />
+          </div>
+
+          <p>height: {{ pokemonDetail.height }}</p>
+          <p>weight: {{ pokemonDetail.weight }}</p>
+          <!-- <ng-container *ngFor="let stat of extractStats(pokemonDetail.stats)"></ng-container> -->
+          <!-- <p>{{ extractStats(pokemonDetail.stats) }}</p> -->
+          <p>color: {{ pokemonSpecies.color.name }}</p>
+          <p>shape: {{ pokemonSpecies.shape.name }}</p>
+          <p>{{ extractTypeNames(pokemonDetail.types) }}</p>
+        </div>
       </ng-container>
     </ng-container>
   </div>
   <button routerLink="" class="rounded-md py-1 px-2 border">Go home</button>
 </div>
+
+<!-- stats: {
+  base_stat: number;
+  effort: number;
+  stat: Results;
+}[]; -->

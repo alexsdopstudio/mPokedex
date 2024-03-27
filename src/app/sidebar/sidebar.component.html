@@ -4,14 +4,16 @@
     class="flex shrink-0 h-screen overflow-x-hidden no-scrollbar bg-gray-100"
   >
     <aside class="h-full px-3 py-4 flex flex-col gap-3">
-      <div id="search" class="flex justify-start">
+      <div id="search" class="flex justify-start gap-3">
         <input
           type="text"
           placeholder="Search"
           class="py-1 px-2 rounded-lg focus:outline-black w-full"
+          #searchInput
         />
+      <button [routerLink]="searchInput.value" (click)="search(searchInput.value)" class="rounded-md py-1 px-2 border bg-white" >Go</button>
+        
       </div>
-
       <div id="title" class="flex items-center gap-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +52,7 @@
       >
         <h6 class="font-bold mb-1">📚 types</h6>
         <div class="flex flex-wrap gap-2">
-          <button *ngFor="let type of types" class="rounded-md py-1 px-2 border">
+          <button *ngFor="let type of types" class="rounded-md py-1 px-2 border" (click)="onFilterChange($event)">
             {{type.name}}
           </button>
           <button class="rounded-md py-1 px-2 text-white bg-gray-600">
@@ -65,7 +67,7 @@
       >
         <h6 class="font-bold mb-1">🌋 habitats</h6>
         <div class="flex flex-wrap gap-2">
-          <button *ngFor="let habitat of habitats" class="rounded-md py-1 px-2 border">
+          <button *ngFor="let habitat of habitats" class="rounded-md py-1 px-2 border" (click)="onFilterChange($event)">
             {{habitat.name}}
           </button>
           <button class="rounded-md py-1 px-2 text-white bg-gray-600">

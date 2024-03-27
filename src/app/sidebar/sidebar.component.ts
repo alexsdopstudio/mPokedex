@@ -8,10 +8,19 @@ import { Observable } from 'rxjs';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
+
 export class SidebarComponent {
   types: Results[] = [];
   habitats: Results[] = [];
   isOpen = true;
+
+  constructor(private data: DataService) {}
+
+  ngOnInit(): void {
+    //console.log('oninit');
+    this.getTypes();
+    this.getHabitats();
+  }
 
   toggleSidebar(): void {
     this.isOpen = !this.isOpen;
@@ -26,16 +35,19 @@ export class SidebarComponent {
 
   getHabitats(): void {
     this.data.getData<Paginated>('pokemon-habitat').subscribe((response) => {
-      this.habitats = response.results;
+    this.habitats = response.results;
       //console.log(this.habitats);
     });
   }
 
-  ngOnInit(): void {
-    //console.log('oninit');
-    this.getTypes();
-    this.getHabitats();
+  search(value: string): void {
+    console.log(value);
+    //call the service with the value
   }
 
-  constructor(private data: DataService) {}
+  onFilterChange(e: Event): void {
+    const target = e.target as HTMLButtonElement;
+    console.log(target.innerText);
+    //call the service with target
+  }
 }

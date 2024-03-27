@@ -10,11 +10,15 @@ export class DataService {
   constructor(private http: HttpClient) {}
   private readonly api = 'https://pokeapi.co/api/v2/';
 
-/*   getDatabyUrl<T>(url: string): Observable<T> {
+  /*   getDatabyUrl<T>(url: string): Observable<T> {
     return this.http.get<T>(url);
   } */
 
   getData<T>(ep: string, key = ''): Observable<T> {
     return this.http.get<T>(`${this.api}${ep}/${key}`);
+  }
+
+  filterBy(key: string) {
+    this.getData('type', key);
   }
 }
