@@ -3,6 +3,14 @@ import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Detailed } from '../types/detailedResponse';
+import { Species } from '../types/speciesResponse';
+
+interface LocalizedNames {
+  language: {
+    name: string;
+  };
+  name: string;
+}
 
 @Component({
   selector: 'app-card',
@@ -12,8 +20,7 @@ import { Detailed } from '../types/detailedResponse';
 // ??? extends TableRowComponent: now it makes sense, but later?
 export class CardComponent {
   pokemonDetail$: Observable<Detailed> | undefined;
-  // TODO1: code species interface and show data on template
-  pokemonSpecies$: Observable<Detailed> | undefined;
+  pokemonSpecies$: Observable<Species> | undefined;
   name = this.route.snapshot.paramMap.get('name');
 
   constructor(private http: DataService, private route: ActivatedRoute) {}
@@ -21,17 +28,19 @@ export class CardComponent {
   ngOnInit(): void {
     if (this.name) {
       this.pokemonDetail$ = this.http.getData<Detailed>('pokemon', this.name);
-      // TODO2: use interface to type returned data
-      this.pokemonSpecies$ = this.http.getData('pokemon-species', this.name);
-      console.log(this.pokemonDetail$);
-      console.log(this.pokemonSpecies$);
+      this.pokemonSpecies$ = this.http.getData<Species>(
+        'pokemon-species',
+        this.name
+      );
     }
-
-    console.log(this.route.snapshot.paramMap.get('name'));
   }
 
   extractTypeNames(types: any[]): string {
-    return types.map(obj => obj.type.name).join(', ');
+    return types.map((obj) => obj.type.name).join(', ');
   }
-  
+
+  extractJapaneseName(lang: any[]): string {
+    const japaneseObj = lang.filter((obj) => obj.language.name == 'ja-Hrkt');
+    return japaneseObj[0].name; 
+  }
 }

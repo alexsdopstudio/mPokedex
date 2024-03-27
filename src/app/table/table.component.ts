@@ -23,7 +23,7 @@ export class TableComponent implements OnInit {
   getPaginated(page: number): void {
     const offset = (page - 1) * this.pokemonsPerPage;
     const limit = this.pokemonsPerPage;
-    this.paginated$ = this.data.getData('pokemon');
+    this.paginated$ = this.data.getData(`pokemon?offset=${offset}&limit=${limit}`);
   }
 
   onPageChange(e: Event): void {

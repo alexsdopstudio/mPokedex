@@ -1,18 +1,29 @@
-<div id="cardContainer" class="flex items-center justify-center w-screen">
-  <div id="card" class="border bg-slate-200">
+<div
+  id="cardContainer"
+  class="flex items-center justify-center w-screen h-screen"
+>
+  <div id="card" class=" bg-slate-200">
     <ng-container *ngIf="pokemonDetail$ | async as pokemonDetail">
-      <p>{{ pokemonDetail.id }}</p>
-      <p>{{ pokemonDetail.name }}</p>
-      <p>{{ pokemonDetail.height }}</p>
-      <p>{{ pokemonDetail.weight }}</p>
-      <p>{{ extractTypeNames(pokemonDetail.types) }}</p>
+      <ng-container *ngIf="pokemonSpecies$ | async as pokemonSpecies">
+        <div class="p-4 flex flex-col">
+          <h1 class="font-semibold text-4xl">{{ pokemonDetail.name }} </h1>
+          <p>{{extractJapaneseName(pokemonSpecies.names)}}</p>
+          <p>evolves from: {{ pokemonSpecies.evolves_from_species?.name }}</p>
+          <div class="border bg-white rounded-md p-4">
+        <img
+          [src]="pokemonDetail.sprites.other.dream_world.front_default"
+          [alt]="pokemonDetail.name"
+          class="h-80"
+        />
+      </div>
+        <p>height: {{ pokemonDetail.height }}</p>
+        <p>weight: {{ pokemonDetail.weight }}</p>
+        <p>color: {{ pokemonSpecies.color.name }}</p>
+        <p>shape: {{ pokemonSpecies.shape.name }}</p>
+        <p>{{ extractTypeNames(pokemonDetail.types) }}</p>
+      </div>
+      </ng-container>
     </ng-container>
-<!--     <ng-container *ngIf="pokemonSpecies$ | async as pokemonSpecies">
-      <p>{{ pokemonSpecies.id }}</p>
-      <p>{{ pokemonSpecies.name }}</p>
-      <p>{{ pokemonSpecies.height }}</p>
-      <p>{{ pokemonSpecies.weight }}</p>
-      <p>{{ extractTypeNames(pokemonSpecies.types) }}</p>
-    </ng-container> -->
   </div>
+  <button routerLink="" class="rounded-md py-1 px-2 border">Go home</button>
 </div>
