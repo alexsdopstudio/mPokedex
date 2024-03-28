@@ -6,17 +6,22 @@
     <ng-container *ngIf="pokemonDetail$ | async as pokemonDetail">
       <ng-container *ngIf="pokemonSpecies$ | async as pokemonSpecies">
         <div class="p-4 flex flex-col">
+          <div class="flex flex-col">
           <h1 id="italianName" class="font-semibold text-4xl">
             {{ pokemonDetail.name | titlecase }}
           </h1>
 
-          <div class="flex justify-between pb-1">
+          <div class="flex justify-between pb-1 ">
             <p id="japaneseName" class="flex items-center">
-              <span class="text-xs">🔴</span>
+              <span class="text-xs">
+                <svg width="20" height="20">
+                  <circle cx="50%" cy="50%" r="5" fill="red"/>
+                </svg>
+              </span>
               {{ extractJapaneseName(pokemonSpecies.names) }}
             </p>
 
-            <p id="prevStage">
+            <p id="prevStage" class="bg-white rounded-md px-1 font-normal">
               {{
                 pokemonSpecies.evolves_from_species?.name
                   ? "evolves from " + pokemonSpecies.evolves_from_species?.name
@@ -24,8 +29,9 @@
               }}
             </p>
           </div>
+        </div>
 
-          <div id="sprite" class="border bg-white rounded-lg p-4">
+          <div id="sprite" class="border bg-white rounded-lg p-4" >
             <img
               [src]="
                 pokemonDetail.sprites.other.dream_world.front_default
@@ -44,6 +50,10 @@
           <p>color: {{ pokemonSpecies.color.name }}</p>
           <p>shape: {{ pokemonSpecies.shape.name }}</p>
           <p>{{ extractTypeNames(pokemonDetail.types) }}</p>
+          
+          <div class="w-full p-4 rounded-lg" [ngStyle]="{'background-color': pokemonSpecies.color.name}">
+            
+          </div>
         </div>
       </ng-container>
     </ng-container>

@@ -11,7 +11,7 @@
           class="py-1 px-2 rounded-lg focus:outline-black w-full"
           #searchInput
         />
-      <button [routerLink]="searchInput.value" (click)="search(searchInput.value)" class="rounded-md py-1 px-2 border bg-white" >Go</button>
+      <button (click)="search(searchInput.value)" class="rounded-md py-1 px-2 border bg-white" >Go</button>
         
       </div>
       <div id="title" class="flex items-center gap-1">
