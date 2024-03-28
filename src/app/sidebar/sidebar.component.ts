@@ -13,7 +13,6 @@ export class SidebarComponent {
   types: Results[] = [];
   habitats: Results[] = [];
   isOpen = true;
-  searchPath: string = '';
 
   constructor(private data: DataService, private route: Router) {}
 
@@ -42,12 +41,9 @@ export class SidebarComponent {
   }
 
   search(value: string): void {
-    console.log(value);
-    this.searchPath = 'card/'+ value;
-    console.log(this.searchPath)
-    this.route.navigate(['/card', value]);
-    
-    //call the service with the value
+    if(value){
+      this.route.navigate(['/card', value]);
+    }
   }
 
   onFilterChange(e: Event): void {
