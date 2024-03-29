@@ -46,9 +46,8 @@ export class SidebarComponent {
     }
   }
 
-  onFilterChange(e: Event): void {
+  onFilterChange(e: Event, ep: string): void {
     const target = e.target as HTMLButtonElement;
-    console.log(target.innerText);
-    //call the service with target
+    this.data.fetchData(ep, target.innerText);
   }
 }

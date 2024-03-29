@@ -33,7 +33,7 @@
         <h5 class="text-lg font-bold">Filters</h5>
       </div>
 
-      <div
+<!--       <div
         id="mostLovedContainer"
         class="bg-white text-sm rounded-lg p-2 w-72 flex flex-col gap-1"
       >
@@ -44,7 +44,7 @@
           </button>
           <button class="rounded-md py-1 px-2 border">bi-type_only:off</button>
         </div>
-      </div>
+      </div> -->
 
       <div
         id="typesContainer"
@@ -52,7 +52,7 @@
       >
         <h6 class="font-bold mb-1">📚 types</h6>
         <div class="flex flex-wrap gap-2">
-          <button *ngFor="let type of types" class="rounded-md py-1 px-2 border" (click)="onFilterChange($event)">
+          <button *ngFor="let type of types" class="rounded-md py-1 px-2 border" (click)="onFilterChange($event, 'type')">
             {{type.name}}
           </button>
           <button class="rounded-md py-1 px-2 text-white bg-gray-600">
@@ -67,7 +67,7 @@
       >
         <h6 class="font-bold mb-1">🌋 habitats</h6>
         <div class="flex flex-wrap gap-2">
-          <button *ngFor="let habitat of habitats" class="rounded-md py-1 px-2 border" (click)="onFilterChange($event)">
+          <button *ngFor="let habitat of habitats" class="rounded-md py-1 px-2 border" (click)="onFilterChange($event, 'pokemon-habitat')">
             {{habitat.name}}
           </button>
           <button class="rounded-md py-1 px-2 text-white bg-gray-600">
