@@ -20,7 +20,9 @@ export class DataService {
     return this.http.get<T>(`${this.api}${ep}/${key}`);
   }
 
-  fetchData(ep: string, key = '') {
+  fetchData(ep: string, key = ''): void {
     this.http.get(`${this.api}${ep}/${key}`).subscribe(res => this.dataSource.next(res));
+    console.log(this.data$)
   }
+
 }

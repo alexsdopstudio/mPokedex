@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DataService } from '../data.service';
 import { Paginated, Results } from '../types/paginatedResponse';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -17,7 +17,6 @@ export class SidebarComponent {
   constructor(private data: DataService, private route: Router) {}
 
   ngOnInit(): void {
-    //console.log('oninit');
     this.getTypes();
     this.getHabitats();
   }
@@ -29,14 +28,12 @@ export class SidebarComponent {
   getTypes(): void {
     this.data.getData<Paginated>('type').subscribe((response) => {
       this.types = response.results;
-      //console.log(this.types);
     });
   }
 
   getHabitats(): void {
     this.data.getData<Paginated>('pokemon-habitat').subscribe((response) => {
       this.habitats = response.results;
-      //console.log(this.habitats);
     });
   }
 

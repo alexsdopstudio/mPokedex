@@ -9,11 +9,9 @@ import { Observable, Subscription, of } from 'rxjs';
   styleUrl: './table.component.css',
 })
 export class TableComponent implements OnInit {
-  paginated$: Observable<Paginated> | undefined;
   private readonly pokemonsPerPage = 10;
-
+  paginated$: Observable<Paginated> | undefined;
   subscription: Subscription | undefined;
-  isActiveFilter = false;
 
   constructor(private data: DataService) {}
 
@@ -21,8 +19,6 @@ export class TableComponent implements OnInit {
     this.getPaginated(1);
     this.getFilteredByType();
     this.getFilteredByHabitat();
-    this.isActiveFilter = !this.isActiveFilter;
-
   }
 
   getPaginated(page: number): void {
@@ -45,11 +41,7 @@ export class TableComponent implements OnInit {
 
   // FILTERS
   getFilteredByType() {
-    console.log(this.isActiveFilter);
-    this.isActiveFilter = true;
-    console.log(this.isActiveFilter);
     this.subscription = this.data.data$.subscribe((res) => {
-      //console.log(res)
       const resultsArray = res.pokemon.map(
         (item: { pokemon: any }) => item.pokemon
       );
@@ -59,25 +51,17 @@ export class TableComponent implements OnInit {
         prev: null,
         results: resultsArray, 
       });
-
-      this.paginated$.subscribe((data) => console.log(data));
     });
   }
 
   getFilteredByHabitat() {
-    
-    this.isActiveFilter = true;
-    console.log(this.isActiveFilter);
     this.subscription = this.data.data$.subscribe((res) => {
-      //console.log(res)
       this.paginated$ = of({
         count: res.pokemon_species.length,
         next: null,
         prev: null,
         results: res.pokemon_species,
       });
-
-      //this.paginated$.subscribe((data) => console.log(data));
     });
   }
 
@@ -91,7 +75,6 @@ export class TableComponent implements OnInit {
   } */
 
   removeFilter() {
-    this.isActiveFilter = false;
     this.getPaginated(1);
   }
 }

@@ -44,13 +44,11 @@ export class CardComponent {
   }
 
   extractTypeNames(types: any[]): string {
-    //console.log(types.map((type) => type.type.name).join(', '))
     return types.map((type) => type.type.name).join(', ');
   }
 
   extractJapaneseName(langs: any[]): string {
     const japanese = langs.filter((lang) => lang.language.name == 'ja-Hrkt');
-    //console.log(japanese[0].name)
     return japanese[0].name;
   }
 
@@ -59,6 +57,5 @@ export class CardComponent {
       return { name: stat.stat.name, base_stat: stat.base_stat };
     });
     this.pokemonStats = filteredStats;
-    //console.log(this.pokemonStats);
   }
 }

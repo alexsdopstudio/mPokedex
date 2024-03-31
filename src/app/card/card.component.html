@@ -1,16 +1,19 @@
-<ng-container *ngIf="pokemonDetail$ | async as pokemonDetail">
+<ng-container *ngIf="pokemonDetail$ | async as pokemonDetail" >
   <ng-container *ngIf="pokemonSpecies$ | async as pokemonSpecies">
     <div
       id="cardContainer"
       class="flex flex-col gap-2 items-center justify-center w-screen h-screen"
+      
     >
+
       <div
         id="card"
         class="rounded-xl bg-slate-200 border-4"
-        [ngStyle]="{ 'border-color': pokemonSpecies.color.name }"
-        
+        [ngStyle]="{ 'border-color': pokemonSpecies.color.name }"    
       >
-        <div class="p-4 flex flex-col gap-2">
+      
+
+        <div class="p-4 flex flex-col gap-2 ">
           <div class="flex flex-col">
             <div class="flex flex-col justify-between p-1 rounded-lg">
               <div class="flex justify-between items-end">
@@ -68,11 +71,14 @@
             </div>
           </div>
         </div>
+      
       </div>
-      <button routerLink="" class="rounded-md py-1 px-2 border bg-white">
-        Go home
+      <button routerLink="" class="rounded-md py-2 px-4 border-2 border-slate-200 bg-white font-semibold">
+        Go back
       </button>
+
     </div>
+    
   </ng-container>
 </ng-container>
 
@@ -133,6 +139,7 @@
     <h1 class="font-bold text-5xl"><{{ pathName }}> is not a Pokemon</h1>
   </div>
 </div>
+
 
 
 
